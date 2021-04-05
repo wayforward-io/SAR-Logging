@@ -1,6 +1,6 @@
 const AWS = require("./aws");
 const lambda = new AWS.Lambda();
-const uuid = require("uuid/v4");
+const { v4: uuidv4 } = require('uuid');
 
 const addLambdaPermission = async (functionArn) => {
 	const req = {
