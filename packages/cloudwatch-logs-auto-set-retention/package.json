@@ -6,17 +6,18 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "package": "sam package --template-file template.yml --output-template-file packaged.yml --s3-bucket sar-logging-set-retention",
-        "publish": "sam publish --template packaged.yml --region us-east-1"
+        "package": "sam package --template-file template.yml --output-template-file packaged.yml --s3-bucket ${S3_BUCKET} --s3-prefix sar-logging/cloudwatch-logs-auto-set-retention",
+        "publish": "sam publish --template packaged.yml --region us-east-1",
+        "copy": "aws s3 cp packaged.yml s3://${S3_BUCKET}/sar-logging/cloudwatch-logs-auto-set-retention/template.yml"
     },
     "author": "Yan Cui",
     "license": "MIT",
     "devDependencies": {
-        "jest": "^24.8.0"
+        "jest": "^27.0.4"
     },
     "dependencies": {
-        "@dazn/lambda-powertools-logger": "^1.9.0",
-        "async-retry": "^1.2.3",
-        "aws-sdk": "^2.420.0"
+        "@dazn/lambda-powertools-logger": "^1.28.1",
+        "async-retry": "^1.3.1",
+        "aws-sdk": "^2.922.0"
     }
 }
